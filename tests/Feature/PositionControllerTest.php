@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Position;
+use App\Models\User;
 use Illuminate\Support\Arr;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use TestCase;
@@ -17,6 +18,7 @@ class PositionControllerTest extends TestCase
     /** @test */
     public function create_position()
     {
+        User::factory()->create();
         $position = Position::factory()->make();
 
         $this->json('POST', self::CREATE_POSITION_URI, $position->toArray());
@@ -39,6 +41,7 @@ class PositionControllerTest extends TestCase
     /** @test */
     public function get_user_position()
     {
+        User::factory()->create();
         $position = Position::factory()->create();
 
         $this->json('GET', self::USER_POSITION_URI.$position->user_id, []);

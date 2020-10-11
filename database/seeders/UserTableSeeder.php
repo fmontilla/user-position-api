@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,9 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call([
-             UserTableSeeder::class,
-             PositionTableSeeder::class
-         ]);
+        User::factory()->times(50)->create();
     }
 }

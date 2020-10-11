@@ -22,10 +22,12 @@ class PositionFactory extends Factory
      */
     public function definition()
     {
+        $users = \App\Models\User::all();
+
         return [
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
-            'user_id' => User::factory()->create()->id
+            'user_id' => $users->random()
         ];
     }
 }

@@ -58,4 +58,27 @@ class PositionControllerTest extends TestCase
             ]
         ]);
     }
+
+    /** @test */
+    public function get_many_user_position()
+    {
+        User::factory()->times(50)->create();
+        $positions = Position::factory()->times(50)->create();
+
+        foreach ($positions as $position) {
+            $this->json('GET', self::USER_POSITION_URI.$position->user_id, []);
+
+            $this->assertResponseOk();
+            $this->seeJsonStructure([
+                '*' => [
+                    'latitude',
+                    'longitude',
+                    'user_id',
+                    'updated_at',
+                    'created_at',
+                    'id'
+                ]
+            ]);
+        }
+    }
 }

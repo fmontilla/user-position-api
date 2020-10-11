@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    ports:
+      - 87:87 # Troque a porta caso seja necessário
+    volumes:
+      - .:/var/www/html:cached
+    links:
+      - bancodedados
+  bancodedados:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    environment:
+      # MYSQL_DATABASE: seu_banco_de_dados
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret

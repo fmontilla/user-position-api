@@ -1,24 +1,29 @@
-# Lumen PHP Framework
+# User Position API
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+API desenvolvida em Lumen versão 8.x
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Requisitos para rodar o projeto
 
-## Official Documentation
+Ter o docker instalado.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## Rodando o projeto
 
-## Contributing
+- Rodar o comando git clone com o caminho apresentado no github
+- Entrar na pasta do projeto via terminal e rodar o comando docker-compose up -d
+- Rodar o comando docker exec -it user-position-api_app_1 sh para acessar o container
+- Rodar o comando composer install
+- Rodar o comando cp .env.example .env
+- Para o próximo passo, recomendo ter uma IDE de banco de dados. Para prosseguir, será necessário criar um banco de dados user_position_api ou com o nome que desejar, porém tendo que ser alterado no arquivo .env posteriormente
+- Após criar a base de dados, rodar o comando php artisan migrate --seed dentro do container para criar as tabelas e registros de teste (Obs.: caso caia o container do banco de dados, sair do container do terminal digitando exit, verificar os containers de pé rodando docker ps, e caso o container do banco de dados não estiver de pé, rodar novamente docker-compose up -d)
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Rodando testes unitários
 
-## Security Vulnerabilities
+Para rodar testes unitário, entrar no container e digitar o comando ./vendor/bin/phpunit
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Arquitetura
 
-## License
+Foi utilizado SOLID, TDD, arquitetura em 4 camadas utilizando Controller, Service, Repository, Validators.
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Documentação
+
+https://documenter.getpostman.com/view/8920139/TVRkaTMr
